@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% comment %} for head title tags and helping us with SEO {% endcomment %}
+{% block title %}Car{% endblock  %}
+
+{% block content %}
+
+<h1 class="title pt-5">Trending Cars</h1>
+<div class="gallery">
+  {% for car in cars %}
+  <a href="">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-square">
+          <img src="{{car.image}}" alt="{{car.name}}" />
+        </figure>
+      </div>
+      <div class="card-header">
+        <p class="card-header-title">{{car.name}}</p>
+      </div>
+    </div>
+  </a>
+	{% empty %}
+  <article class="message">
+    <div class="message-header">
+      <p>No Cars Available</p>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}
