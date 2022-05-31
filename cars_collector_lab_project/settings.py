@@ -77,8 +77,8 @@ WSGI_APPLICATION = 'cars_collector_lab_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'cars_collector',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'cars',
     }
 }
 
