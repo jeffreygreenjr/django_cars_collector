@@ -3,7 +3,7 @@ from django.views import View # <- View class to handle requests
 from django.http import HttpResponse # <- a class to handle sending a type of response
 #...
 from django.views.generic.base import TemplateView
-
+from django.views.generic.edit import CreateView
 from .models import Car
 
 # Create your views here.
@@ -35,10 +35,36 @@ class About(TemplateView):
 #         "https://i.scdn.co/image/7bc3bb57c6977b18d8afe7d02adaeed4c31810df"),
 # ]
 
+# class CarList(TemplateView):
+#     template_name = "car_list.html"
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context["cars"] = Car.objects.all() # this is where we add the key into our context object for the view to use
+#         return context
+
 class CarList(TemplateView):
     template_name = "car_list.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["cars"] = Car.objects.all() # this is where we add the key into our context object for the view to use
+        # to get the query parameter we have to acccess it in the request.GET dictionary object        
+        name = self.request.GET.get("name")
+        # If a query exists we will filter by name 
+        if name != None:
+            # .filter is the sql WHERE statement and name__icontains is doing a search for any name that contains the query param
+            context["cars"] = Car.objects.filter(name__icontains=name)
+            # We add a header context that includes the search param
+            context["header"] = f"Searching for {name}"
+        else:
+            context["cars"] = Car.objects.all()
+            # default header for not searching 
+            context["header"] = "Trending Cars"
         return context
+
+
+class CarCreate(CreateView):
+    model = Car
+    fields = ['name', 'year', 'img']
+    template_name = "car_create.html"
+    success_url = "/cars/"
