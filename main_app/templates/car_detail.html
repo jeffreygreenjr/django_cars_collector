@@ -4,24 +4,24 @@
     <img src="{{car.img}}" alt="{{car.name}}" />
 </div>
 <div class="detail__name">
-    <!-- {% if car.verified_car %}
+    {% if car.verified_car %}
     <div class="icon-text">
         <span class="icon has-text-info">
             <i class="fas fa-check-circle"></i>
         </span>
         <span>Verified</span>
     </div>
-    {% endif %} -->
+    {% endif %}
     <h1 class="title">{{car.name}}</h1>
 </div>
 <div class="detail__container">
     <div class="buttons">
-        <a href="" class="button is-info">
+        <a href="{% url 'car_update' car.pk %}" class="button is-info"> Update
             <span class="icon">
                 <i class="fas fa-edit"></i>
             </span>
         </a>
-        <a href="" class="button is-danger">
+        <a href="{% url 'car_delete' car.pk %}" class="button is-danger"> Delete
             <span class="icon">
                 <i class="fas fa-trash-alt"></i>
             </span>

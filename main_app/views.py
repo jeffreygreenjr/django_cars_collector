@@ -1,10 +1,13 @@
+from django.urls import reverse
+
 from django.shortcuts import render
-from django.views import View # <- View class to handle requests
 from django.http import HttpResponse # <- a class to handle sending a type of response
-#...
+
+from django.views import View # <- View class to handle requests
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
+
 from .models import Car
 
 # Create your views here.
@@ -68,9 +71,24 @@ class CarCreate(CreateView):
     model = Car
     fields = ['name', 'year', 'img']
     template_name = "car_create.html"
-    success_url = "/cars/"
+    def get_success_url(self):
+        return reverse('car_detail', kwargs={'pk': self.object.pk})
 
 
 class CarDetail(DetailView):
     model = Car
     template_name = "car_detail.html"
+
+
+class CarUpdate(UpdateView):
+    model = Car
+    fields = ['name', 'year', 'img']
+    template_name = "car_update.html"
+    def get_success_url(self):
+        return reverse('car_detail', kwargs={'pk': self.object.pk})
+
+
+class CarDelete(DeleteView):
+    model = Car
+    template_name = "car_delete_confirmation.html"
+    success_url = "/cars/"
