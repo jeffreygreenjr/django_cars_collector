@@ -69,7 +69,7 @@ class CarList(TemplateView):
 
 class CarCreate(CreateView):
     model = Car
-    fields = ['name', 'year', 'img']
+    fields = ['name', 'year', 'bio', 'img']
     template_name = "car_create.html"
     def get_success_url(self):
         return reverse('car_detail', kwargs={'pk': self.object.pk})
@@ -82,7 +82,7 @@ class CarDetail(DetailView):
 
 class CarUpdate(UpdateView):
     model = Car
-    fields = ['name', 'year', 'img']
+    fields = ['name', 'year', 'bio', 'img']
     template_name = "car_update.html"
     def get_success_url(self):
         return reverse('car_detail', kwargs={'pk': self.object.pk})
