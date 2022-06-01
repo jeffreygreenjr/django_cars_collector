@@ -4,6 +4,7 @@ from django.http import HttpResponse # <- a class to handle sending a type of re
 #...
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView
+from django.views.generic import DetailView
 from .models import Car
 
 # Create your views here.
@@ -68,3 +69,8 @@ class CarCreate(CreateView):
     fields = ['name', 'year', 'img']
     template_name = "car_create.html"
     success_url = "/cars/"
+
+
+class CarDetail(DetailView):
+    model = Car
+    template_name = "car_detail.html"
