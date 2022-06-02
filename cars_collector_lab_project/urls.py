@@ -18,6 +18,8 @@ from django.urls import path, include # <- you must add include to the imports
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('main_app.urls')) # <- here is the new line to include the urls of our app
+    path('', include('main_app.urls')), # <- here is the new line to include the urls of our app
+     # include the built-in auth urls for the built-in views
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
