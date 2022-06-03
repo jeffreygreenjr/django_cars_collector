@@ -90,7 +90,13 @@ class CarCreate(CreateView):
     model = Car
     fields = ['name', 'year', 'manufacturer', 'vehicletype', 'bio', 'img']
     template_name = "car_create.html"
+     # This is our new method that will add the user into our submitted form
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(CarCreate, self).form_valid(form)
+
     def get_success_url(self):
+        print(self.kwargs)
         return reverse('car_detail', kwargs={'pk': self.object.pk})
 
 
