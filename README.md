@@ -14,8 +14,11 @@ In the tenth week of my Software Engineering Immersive bootcamp, I developed and
 ### Technologies Used
 Python, Django, Django Admin, PSQL, jQuery, HTML, CSS, Bulma, Responsive Design, Authentication/Authorization, Netlify
 
+#### Getting Started
+To browse this application, click on the following link: . You will be loaded into the welcome page with navlinks at the top to sign up and/or log in if you are an existing user. After successfully logging in, you will be redirected to the "Cars" list page displaying all of the trending cars. You have he option to browse the trending cars already provided, or you can search for a specific vehicle using the search engine. There's also an "Add a Car" button to add a vehicle you find trending currently. If you wantto view all of your added cars, go to the nav link and click on the "My Cars" option.
+
 #### Next Steps/Future Enhancements
-While adding data by hand keeps the application personalized, it would make sense to add an API to interact with that will fetch current trending vehicles. Implementing this will allow more information to be retrieved and provided for the car enthusiasts.
+While adding data by hand keeps the application personalized, it would make sense to add an API to interact with that fetches current trending vehicles. Implementing this will allow more information to be retrieved and provided for the car enthusiasts. Another stretch feature I'd like to add to benefit users is a like button. While scrolling through the trending cars, I'd like to build functionality for user's to be able to like a vehicle and store that data in a sperate web page called "My Liked Cars." The further I get in my software engineering/web development journey, the more additions I'll be able to make as I am constantly learning new technologies!
 
 #### Support
 For any questions regarding this project, please email me directly at mrjeffreygreen@gmail.com
