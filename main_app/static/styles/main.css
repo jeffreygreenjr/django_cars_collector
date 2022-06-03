@@ -81,3 +81,15 @@ body {
   .aboutlinks {
       font-size: 2em;
   }
+
+/* ------MEDIA QUERY (PHONE)------ */
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 5%;
+      }
+
+      .gallery {
+        width: 100%;
+      }
+}
+
