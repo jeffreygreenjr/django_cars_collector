@@ -8,8 +8,11 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 
+# Auth
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 from .models import Car
 
@@ -43,6 +46,7 @@ class CarList(TemplateView):
         return context
 
 
+@method_decorator(login_required, name='dispatch')
 class MyCarList(TemplateView):
     template_name = "my_car_list.html"
 
