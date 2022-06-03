@@ -66,10 +66,29 @@ class CarList(TemplateView):
             context["header"] = "Trending Cars"
         return context
 
+class MyCarList(TemplateView):
+    template_name = "my_car_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # to get the query parameter we have to acccess it in the request.GET dictionary object        
+        name = self.request.GET.get("name")
+        # If a query exists we will filter by name 
+        if name != None:
+            # .filter is the sql WHERE statement and name__icontains is doing a search for any name that contains the query param
+            context["cars"] = Car.objects.filter(
+                name__icontains=name, user=self.request.user)
+            # We add a header context that includes the search param
+            context["header"] = f"Searching for {name}"
+        else:
+            context["cars"] = Car.objects.filter(user=self.request.user)
+            # default header for not searching 
+            context["header"] = "Trending Cars"
+        return context
 
 class CarCreate(CreateView):
     model = Car
-    fields = ['name', 'year', 'bio', 'img']
+    fields = ['name', 'year', 'manufacturer', 'vehicletype', 'bio', 'img']
     template_name = "car_create.html"
     def get_success_url(self):
         return reverse('car_detail', kwargs={'pk': self.object.pk})
@@ -82,7 +101,7 @@ class CarDetail(DetailView):
 
 class CarUpdate(UpdateView):
     model = Car
-    fields = ['name', 'year', 'bio', 'img']
+    fields = ['name', 'year', 'manufacturer', 'vehicletype', 'bio', 'img']
     template_name = "car_update.html"
     def get_success_url(self):
         return reverse('car_detail', kwargs={'pk': self.object.pk})

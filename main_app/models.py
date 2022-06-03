@@ -6,8 +6,6 @@ from django.contrib.auth.models import User
 class Manufacturer(models.Model):
     name = models.CharField(max_length=150)
     location = models.CharField(max_length=150)
-      # Add a relationship for the user
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     def __str__(self):
         return self.name
     class Meta:
@@ -28,9 +26,10 @@ class Car(models.Model):
     vehicletype = models.ManyToManyField(VehicleType)
     bio = models.TextField(max_length=500)
     img = models.CharField(max_length=500)
+     # Add a relationship for the user
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
-
 
